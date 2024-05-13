@@ -1,0 +1,100 @@
+<h1 style="color: green;">user-form works!</h1>
+
+<form #myUserForm="ngForm" (ngSubmit)="myUserForm.valid && onSubmit()">
+    <div>
+        Form submitted ? {{myUserForm.submitted}}
+        Form valid ? {{myUserForm.valid}}
+        Form invalid ? {{myUserForm.invalid}}
+    </div>
+
+    <!-- Champ Nom de famille -->
+    <fieldset>
+        <label for="usrlname">Nom de famille</label>
+        <input id="usrlname" name="usrlname" type="text" [(ngModel)]="newUser.lastname"
+            #lastname="ngModel" required minlength="1" maxlength="30">
+
+        <!-- Message d'erreur de title -->
+        <div *ngIf="lastname.errors; else elseLasname">
+            <span *ngIf="lastname.errors?.['required']" style="color: red;">Le nom d'utilisateur est requis</span>
+            <span *ngIf="lastname.errors?.['minlength']" style="color: red;">La longueur minimale doit être
+                supérieure à
+                1</span>
+            <span *ngIf="lastname.errors?.['maxlength']" style="color: red;">La longueur maximale doit être inférieure à
+                30</span>
+        </div>
+        <ng-template #elseLasname>
+            <span style="color: green; font-style: italic;">
+                Le titre entré est : {{lastname.value}}
+            </span>
+        </ng-template>
+    </fieldset>
+
+    <!-- Champ Prénom -->
+    <fieldset>
+        <label for="usrfname">Prénom</label>
+        <input id="usrfname" name="usrfname" type="text" [(ngModel)]="newUser.firstname"
+            #firstname="ngModel" required minlength="1" maxlength="30">
+
+
+        <!-- Message d'erreur de Prénom -->
+        <div *ngIf="firstname.errors; else elseFirsname">
+            <span *ngIf="firstname.errors?.['required']" style="color: red;">Le prénom est requis</span>
+            <span min *ngIf="firstname.errors?.['minlength']" style="color: red;">La longueur minimale doit être
+                supérieure
+                à
+                1</span>
+            <span *ngIf="firstname.errors?.['maxlength']" style="color: red;">La longueur maximale doit être inférieure
+                à
+                30</span>
+        </div>
+        <ng-template #elseFirsname>
+            <span style="color: green; font-style: italic;">
+                Le prénom entré est : {{firstname.value}}
+            </span>
+        </ng-template>
+    </fieldset>
+
+    <!-- Champ Mot de passe -->
+    <fieldset>
+        <label for="usremail">E-mail</label>
+        <input id="usremail" name="usremail" type="email" [(ngModel)]="newUser.email" #email="ngModel" required email>
+
+
+        <!-- Message d'erreurs de email -->
+        <div *ngIf="email.errors, else elseEmail">
+            <span *ngIf="email.errors?.['required']" style="color: red;">Le champ email est requis</span>
+            <span *ngIf="email.errors?.['email']" style="color: red;">L'adresse email doit être valide</span>
+        </div>
+        <ng-template #elseEmail>
+            <span style="color: green; font-style: italic;">
+                L'email d'identification est : {{email.value}}
+            </span>
+        </ng-template>
+    </fieldset>
+
+    <!-- Champ Mot de passe -->
+    <fieldset>
+        <label for="usrpwd">Mot de passe</label>
+        <input id="usrpwd" name="usrpwd" type="password" [(ngModel)]="newUser.password"
+            #password="ngModel" required minlength="8">
+
+
+        <!-- Message d'erreurs de Mot de passe -->
+        <div *ngIf="password.errors, else elsePassword">
+            <span *ngIf="password.errors?.['required']" style="color: red;">Le champ mot de passe est requis</span>
+            <span *ngIf="password.errors?.['password']" style="color: red;">Le mot de passe doit être valide</span>
+            <span *ngIf="password.errors?.['minlength']" style="color: red;">La longueur minimale doit être supérieure à
+                8</span>
+        </div>
+        <div>
+            <ng-template #elsePassword>
+                <span style="color: green; font-style: italic;">
+                    Le mot de passe entrée est : {{password.value}}
+                </span>
+            </ng-template>
+        </div>
+    </fieldset>
+
+    <button type="reset">Restaurer</button>
+    <button type="submit">Sauvegarder</button>
+</form>

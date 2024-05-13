@@ -1,0 +1,80 @@
+<h1 style="color: green;">My-form works!</h1>
+
+<form #myForm="ngForm" (ngSubmit)="myForm.valid && onSubmit()">
+    <div>
+        Form submitted ? {{myForm.submitted}}
+        Form valid ? {{myForm.valid}}
+        Form invalid ? {{myForm.invalid}}
+    </div>
+    <fieldset>
+        <label for="title-order">Titre</label>
+        <input id="title-order" name="title-order" type="text" [(ngModel)]="newOrder.title" #title="ngModel" required
+            minlength="5">
+    </fieldset>
+
+    <!-- Message d'erreur de title -->
+    <div *ngIf="title.errors; elseTitle">
+        <span *ngIf="title.errors?.['required']" style="color: red;">Le champ titre est requis</span>
+        <span *ngIf="title.errors?.['minlength']" style="color: red;">La longueur minimale doit être supérieure à
+            5</span>
+        <span *ngIf="title.errors?.['maxlength']" style="color: red;">La longueur maximale doit être inférieure à
+            30</span>
+    </div>
+    <ng-template #elseTitle>
+        <span style="color: green; font-style: italic;">
+            Le titre entré est : {{title.value}}
+        </span>
+    </ng-template>
+
+    <fieldset>
+        <label for="quantity-order">Quantité</label>
+        <input id="quantity-order" name="quantity-order" type="number" min="1" [(ngModel)]="newOrder.quantity"
+            #quantity="ngModel" required>
+    </fieldset>
+
+    <!-- Message d'erreurs de quantity -->
+    <div *ngIf="quantity.errors, else elseQuantity">
+        <span *ngIf="quantity.errors?.['required']" style="color: red;">Le champ quantité est requis</span>
+        <span *ngIf="quantity.errors?.['min']" style="color: red;">La quantité doit être supérieure à 0</span>
+    </div>
+    <ng-template #elseQuantity>
+        <span style="color: green; font-style: italic;">
+            La quantité entrée est : {{quantity.value}}
+        </span>
+    </ng-template>
+
+    <fieldset>
+        <label action="date-order">Date de commande</label>
+        <input id="date-order" name="date-order" type="date" [(ngModel)]="newOrder.date" #date="ngModel" required>
+    </fieldset>
+
+    <!-- Message d'erreurs de date -->
+    <div *ngIf="date.errors, else elseDate">
+        <span *ngIf="date.errors?.['required']" style="color: red;">Le champ date est requis</span>
+    </div>
+    <ng-template #elseDate>
+        <span style="color: green; font-style: italic;">
+            La date selectionnée est : {{date.value}}
+        </span>
+    </ng-template>
+
+    <fieldset>
+        <label for="contact-order">Contact</label>
+        <input id="contact-order" name="contact-order" type="email" [(ngModel)]="newOrder.contact" #contact="ngModel"
+            required email>
+    </fieldset>
+
+    <!-- Message d'erreurs de contact -->
+    <div *ngIf="contact.errors, else elseContact">
+        <span *ngIf="contact.errors?.['required']" style="color: red;">Le champ email est requis</span>
+        <span *ngIf="contact.errors?.['email']" style="color: red;">L'adresse email doit être valide</span>
+    </div>
+    <ng-template #elseContact>
+        <span style="color: green; font-style: italic;">
+            L'email de contacte entré est : {{contact.value}}
+        </span>
+    </ng-template>
+
+    <button type="reset">Restaurer</button>
+    <button type="submit">Sauvegarder</button>
+</form>
