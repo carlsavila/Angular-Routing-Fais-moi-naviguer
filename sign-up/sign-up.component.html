@@ -1,10 +1,12 @@
-<h2>Sign-Up works!!!</h2>
-
-<app-user-form></app-user-form>
-
+<h2 style="color: green;">Sign-Up works!!!</h2>
 <ul>
     <li>
+        <h3>User profile</h3>
+        <router-outlet>Sign-up's Outlet to User-Profile : </router-outlet>
         <a [routerLink]="['/user']">User-Profile</a>
     </li>
+    <li>
+        <h3>User form : </h3>
+        <app-user-form>user-app call</app-user-form>
+    </li>
 </ul>
-<router-outlet> Outlet to User-Profile </router-outlet>
