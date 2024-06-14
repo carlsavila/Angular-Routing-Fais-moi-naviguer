@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Order } from '../models/order.model';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,16 +11,26 @@ import { CommonModule } from '@angular/common';
   styleUrl: './my-form.component.css'
 })
 export class MyFormComponent {
-
+  //Attributs
   newOrder: Order = {
     title: "",
     quantity: 0,
     date: new Date(),
     contact: ""
   }
-  
-  onSubmit(): void{
+  btnSubmitIsDisabled: boolean=true;
+
+  //Functions
+  btnOnSubmit(value: boolean){
+    this.btnSubmitIsDisabled = !this.btnSubmitIsDisabled;
+  }
+
+  onSubmit(myForm: NgForm): void{
     // form submitted
     console.log(this.newOrder + "formulaire envoyé!");
+    myForm.resetForm();
+    
   }
+
+
 }

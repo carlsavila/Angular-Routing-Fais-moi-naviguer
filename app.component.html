@@ -1,8 +1,16 @@
-<h1>Apps Routing - Users</h1>
+<header>
 
-<ul>
-  <li>
-    <a [routerLink]="['/menu']">Menu</a>
-  </li>
-</ul>
-<router-outlet>App's Router Outlet to Menu :</router-outlet>
+  <app-menu class="menu"><a [routerLink]="['/menu']"></a></app-menu>
+
+</header>
+
+<main>
+  <h2 style="color: green;">Main section</h2>
+  <router-outlet></router-outlet>
+  <p>main end</p>
+</main>
+
+<footer>
+  footer start
+  footer end
+</footer>

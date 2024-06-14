@@ -1,7 +1,6 @@
-<h3 style="color: green;">user-form works!</h3>
+<p style="color: green;">User-form add works!</p>
 
 <form #ngUserForm="ngForm" (ngSubmit)="onSubmit()">
-
 
     <div *ngIf="ngUserForm.submitted && ngUserForm.valid && !ngUserForm.invalid; else ifelseForm">
         <span style="color: green;">

@@ -1,11 +1,17 @@
-<h2 style="color: green;">Menu works!</h2>
-<router-outlet>Menu's Outlet to Sign-up, User-Profile</router-outlet>
-<ul>
-    <li>
-        <a [routerLink]="['/signup']">Sign-up</a>
-    </li>
-    <li>
-        <a [routerLink]="['/user']">User</a>
-    </li>
-</ul>
+<div class="menu">
+
+    <img class="logo" src="assets/logo.svg" alt="logo">
+
+    <h1 style="color: green;">Menu works!</h1>
+
+    <ul class="menuItems">
+        <li>
+            <a [routerLink]="['/user']">User</a>
+        </li>
+        <li>
+            <a [routerLink]="['/signup']">Sign-up</a>
+        </li>
+    </ul>
+
+</div>
 
